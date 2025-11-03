@@ -1,2 +1,1 @@
-console.log("Base project loaded successfully!");
-
+console.log("Basic CI/CD demo loaded!");
