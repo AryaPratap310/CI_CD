@@ -1,0 +1,36 @@
+name: CI Workflow
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML file
+        run: |
+          if grep -q "<html" index.html; then
+            echo "✅ HTML check passed!"
+          else
+            echo "❌ HTML check failed!" && exit 1
+          fi
+
+      - name: Validate CSS file
+        run: |
+          if grep -q "body" style.css; then
+            echo "✅ CSS check passed!"
+          else
+            echo "❌ CSS check failed!" && exit 1
+          fi
+
+      - name: Validate JS file
+        run: |
+          if grep -q "console.log" script.js; then
+            echo "✅ JS check passed!"
+          else
+            echo "❌ JS check failed!" && exit 1
+          fi
